@@ -18,7 +18,45 @@ Each section gets its own color-themed banner inside a single "Mikey Briefing" e
 
 ---
 
-## Architecture
+## Pipeline
+
+```mermaid
+flowchart TD
+    CLI(["run_mikey.py"])
+
+    CLI --> ORCH
+
+    subgraph ORCH ["  pipeline.py — Orchestrator  "]
+        H["Garmin Health Agent\nreport_agent.py"]
+        T["AI & Tech Agent\ntech_agent.py"]
+        S["Stock Agent\nstock_agent.py"]
+    end
+
+    H -->|"Garmin function tools"| GC[("Garmin\nConnect API")]
+    T & S -->|"web_search"| WEB(["Web"])
+
+    H --> D
+    T --> D
+    S --> D
+
+    subgraph D ["  delivery/  "]
+        ES["email_sender.py\nMarkdown → styled HTML"]
+    end
+
+    D --> INBOX(["Gmail SMTP → Inbox"])
+
+    classDef agent fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    classDef external fill:#fef9c3,stroke:#ca8a04,color:#713f12
+    classDef delivery fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef entry fill:#f3f4f6,stroke:#6b7280,color:#111827
+
+    class H,T,S agent
+    class GC,WEB external
+    class ES delivery
+    class CLI,INBOX entry
+```
+
+## File structure
 
 ```
 config.py              # single config file: model, topics, stock list, time windows
