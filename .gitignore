@@ -1,0 +1,36 @@
+# ---- Secrets / credentials ----
+.env
+.env.*
+!.env.example
+
+# ---- Garmin auth tokens (OAuth tokens cached after first login) ----
+.garmin_tokens/
+*.garth
+
+# ---- Fetched personal data (do not commit) ----
+data/
+
+# ---- Generated personal reports (do not commit) ----
+reports/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# ---- Virtual env ----
+.venv/
+venv/
+env/
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo

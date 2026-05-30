@@ -1,0 +1,4 @@
+garminconnect==0.3.2
+python-dotenv==1.2.2
+openai-agents==0.17.4
+markdown==3.10.2
